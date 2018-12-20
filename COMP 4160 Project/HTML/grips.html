@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html, body{
+            margin: 0;
+            height: 100%;
+            background-color: #fff;
+            color: #fff;
+            overflow: hidden
+        }
+        canvas{display: block;}
+        body {
+            font-family: "Lato", sans-serif;
+        }
+        button{
+            text-align: center;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            size: 30px;
+            border-radius: 20px;
+            margin: 2px 2px;
+
+
+        }
+        button:hover {
+            background: lightsalmon;
+        }
+        /* Fixed sidenav, full height */
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+
+        }
+
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a, .dropdown-btn {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+
+        }
+
+        /* On mouse-over */
+        .sidenav a:hover, .dropdown-btn:hover {
+            color: #f1f1f1;
+        }
+        .sidenav .closebtn {
+            top:0px;
+            margin-left: 160px;
+            font-size: 26px;
+        }
+        /* Main content */
+        .main {
+            margin-left: 100px; /* Same as the width of the sidenav */
+            font-size: 20px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+
+        }
+
+        /* Add an active class to the active dropdown button */
+        .active {
+            background-color: green;
+            color: white;
+        }
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background-color: #262626;
+            padding-left: 8px;
+        }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+            float: right;
+            padding-right: 8px;
+        }
+
+        /* Some media queries for responsiveness */
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+    </style>
+</head>
+
+<body> <!-- import library -->
+<script src="JS lib/three.js"></script>
+<script src="JS lib/inflate.min.js"></script>
+<script src="JS lib/FBXLoader.js"></script>
+<script src="JS lib/OrbitControls.js"></script>
+<script src="JS lib/Detector.js"></script>
+<script src="JS lib/OBJLoader.js"></script>
+<script src="JS lib/MaterialLoader.js"></script>
+
+
+<div  id="main" >
+    <span style="font-size:30px; color:black; cursor:pointer" onclick="openNav()">&#9776;</span>
+    <button style="float:right;" onclick="fullscreen()" class="button" id="button">Full Screen</button>
+</div>
+
+<div id="mySidenav" class="sidenav"> <!-- slide navigation and drop button-->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <button class="dropdown-btn">Main Color
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="index.html">Red</a>
+        <a href="blackmachine.html">Black</a>
+    </div>
+    <button class="dropdown-btn">Measuring Wheel
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="wheel1.html">Measuring wheel 1</a>
+        <a href="wheel2.html">Measuring wheel 2</a>
+        <a href="wheel3.html">Measuring wheel 3</a>
+        <a href="wheel4.html">Measuring wheel 4</a>
+        <a href="#">Measuring wheel 5</a>
+    </div>
+    <button class="dropdown-btn">Rotator
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Yes</a>
+        <a href="#">No</a>
+    </div>
+    <button class="dropdown-btn">Main Saw
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Yes</a>
+        <a href="#">No</a>
+    </div>
+    <button class="dropdown-btn">Computer System
+        <i class="fa fa-caret-down"></i>
+    </button><div class="dropdown-container">
+    <a href="#">System 1</a>
+    <a href="#">System 2</a>
+    <a href="#">System 3</a>
+</div>
+    <button class="dropdown-btn">Front Knife
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Yes</a>
+        <a href="#">No</a>
+    </div>
+    <button class="dropdown-btn">Laser Find End
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Yes</a>
+        <a href="#">No</a>
+    </div>
+    <button class="dropdown-btn">Tool Kit
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Yes</a>
+        <a href="#">No</a>
+    </div>
+    <button class="dropdown-btn">Uptime Kit
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="#">Yes</a>
+        <a href="#">No</a>
+    </div>
+    <button class="dropdown-btn">Grips
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="grips1.html">Yes</a>
+        <a href="index.html">No</a>
+    </div>
+    <button class="dropdown-btn">Shopping Center
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="Shop.html">Shopping Center</a>
+    </div>
+
+
+
+</div>
+<!-- div name Menu -->
+
+<!-- draw menu animation -->
+<script> /* style for navigation button, open and close */
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    }
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+    }
+</script>
+
+
+<script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
+
+
+<script> //script fullscreen
+function fullscreen() {
+    var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+        (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+        (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+        (document.msFullscreenElement && document.msFullscreenElement !== null);
+    var docElm = document.documentElement;
+    if (!isInFullScreen) {
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        } else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+        } else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+        } else if (docElm.msRequestFullscreen) {
+            docElm.msRequestFullscreen();
+        }
+        document.getElementById("button").innerHTML = "Exit Full Screen";
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+        document.getElementById("button").innerHTML = "Full Screen";
+    }
+}
+//script fullscreen
+</script>
+<div class="test">
+    <script>
+        var container, controls;
+        var camera, scene, renderer, light;
+        init();
+        animate();
+        function init() {     // start to initial the process
+            switchmodle();    // start to load the model
+
+            container = document.createElement( 'div' );
+            document.body.appendChild( container );
+            // setup camera
+            camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 2000 );
+            camera.position.set( 100, 200, 300 );
+            // setup controller  (mouse click)
+            controls = new THREE.OrbitControls( camera );
+            controls.target.set( 10, 100, 10 );
+            controls.update();
+            // setup new scene,
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color( 0xffffff ); //sky background
+            //scene.for = new Three.for() -> fog
+            //setup  reflection light
+            light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+            light.position.set( 0, 200, 0 );
+            scene.add( light );
+            // setup direction light to model
+            light1 = new THREE.DirectionalLight( 0xffffff );
+            light1.position.set( 0, 200, 100 );
+            //setup shadow and camera
+            light1.castShadow = true;
+            light1.shadow.camera.top = 180;
+            light1.shadow.camera.bottom = -100;
+            light1.shadow.camera.left = -120;
+            light1.shadow.camera.right = 120;
+            scene.add( light1);
+            // set ground
+            var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 1500, 1500 ), new THREE.MeshPhongMaterial( { color: 0x444444, depthWrite: false } ) );
+            mesh.rotation.x = - Math.PI / 2;
+            mesh.receiveShadow = true;
+            scene.add( mesh );
+            // load model
+            //get the fbx loader
+            function switchmodle() {
+                // var array = ["framefusiontst.fbx","aaa.fbx","hello.fbx"]
+                //var x = 0;
+                var loader = new THREE.OBJLoader();
+                loader.load('3d model/Jstickmodeledv8.obj', function (object) {
+                    object.scale.set(1,1.3,1);
+                    //animation if model has
+                    /* object.mixer = new THREE.AnimationMixer( object );
+                mixers.push( object.mixer );
+                var action = object.mixer.clipAction( object.animations[ 0 ] );
+                action.play(); */
+                    //texture, shadows
+                    object.traverse(function (child) {
+                        if (child.isMesh)
+                        {
+                            child.castShadow = true;
+                            child.receiveShadow = true;
+                        }
+                    });
+                    scene.add(object);
+                    // 3. Add event handler
+                });
+            }
+            // generate 3d on canvas
+            renderer = new THREE.WebGLRenderer();
+            renderer.setPixelRatio( window.devicePixelRatio );
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            container.appendChild( renderer.domElement );
+            //windows resize, auto fit..
+            window.addEventListener( 'resize', onWindowResize, false );
+        }
+        //on windows resize auto fit ..
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize( window.innerWidth, window.innerHeight ); //resize exit screen
+        }
+        //animations
+        function animate() {
+            requestAnimationFrame( animate );
+            //animation code if model has
+            /*if ( mixers.length > 0 ) {
+                for ( var i = 0; i < mixers.length; i ++ ) {
+                    mixers[ i ].update( clock.getDelta() );
+                }
+            } */
+            renderer.render( scene, camera );
+            renderer.render(backgroundScene , backgroundCamera );
+        }
+
+    </script>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+Cookie.js
+server.js
+index.js
+cart.js
+Store data in shop.html and cart.html
+
+
+
+
+jspdf.js
+jquery-2.1.3.js 
+canvas2image.js
+pdfFromHTML.js
+library that output the html to pdf form
+
+FBXLoader
+inflate.min
+ObjectLoader
+OrbitControls
+stats.min
+file to load fbx model, object model to html web page
+
+
+
+
+MaterialLoader
+object texture file on blackmachine.html

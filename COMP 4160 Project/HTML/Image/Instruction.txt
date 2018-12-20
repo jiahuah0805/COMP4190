@@ -1,0 +1,6 @@
+5, 6, 7
+Three images used on new.html 
+
+
+p1 to p8 
+Images used on shop.html

@@ -1,0 +1,8 @@
+ul#slider {
+    width: 300px;
+    height: 200px;
+    list-style: none;
+}
+
+.caption { display: none; }
+#current-caption { width: 300px; margin: 10px auto; text-align: center; }
